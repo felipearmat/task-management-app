@@ -1,34 +1,41 @@
-<h1>Your Tasks</h1>
+<h1 class="text-3xl font-bold text-center my-8">Your Tasks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Priority</th>
-      <th>Due Date</th>
-      <th>Completed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-white shadow-md rounded-lg">
+    <thead>
       <tr>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.priority %></td>
-        <td><%= task.due_date %></td>
-        <td><%= task.completed ? 'Yes' : 'No' %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td>
-          <%= link_to 'Destroy', task,
-              data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-        </td>
+        <th class="py-3 px-6 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Title</th>
+        <th class="py-3 px-6 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Description</th>
+        <th class="py-3 px-6 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Priority</th>
+        <th class="py-3 px-6 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Due Date</th>
+        <th class="py-3 px-6 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Completed</th>
+        <th class="py-3 px-6 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider" colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<%= link_to 'New Task', new_task_path %>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+          <td class="py-4 px-6 text-sm font-medium text-gray-900"><%= task.title %></td>
+          <td class="py-4 px-6 text-sm text-gray-500"><%= task.description %></td>
+          <td class="py-4 px-6 text-sm text-gray-500"><%= task.priority %></td>
+          <td class="py-4 px-6 text-sm text-gray-500"><%= task.due_date.strftime("%B %d, %Y") %></td>
+          <td class="py-4 px-6 text-sm text-gray-500"><%= task.completed ? 'Yes' : 'No' %></td>
+          <td class="py-4 px-6 text-sm text-blue-500 hover:text-blue-700">
+            <%= link_to 'Show', task %>
+          </td>
+          <td class="py-4 px-6 text-sm text-yellow-500 hover:text-yellow-700">
+            <%= link_to 'Edit', edit_task_path(task) %>
+          </td>
+          <td class="py-4 px-6 text-sm text-red-500 hover:text-red-700">
+            <%= link_to 'Destroy', task, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="flex justify-end mt-4">
+  <%= link_to 'New Task', new_task_path, class: 'inline-block px-6 py-2 text-white bg-green-500 hover:bg-green-600 rounded-lg font-semibold' %>
+</div>

@@ -1,46 +1,52 @@
-<h1>Edit Task</h1>
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold mb-6 text-center">Edit Task</h1>
 
-<%= form_with(model: @task, local: true) do |form| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
-      <ul>
-        <% @task.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= form_with(model: @task, local: true, class: "space-y-6") do |form| %>
+    <% if @task.errors.any? %>
+      <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
+        <h2 class="font-semibold"><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+        <ul class="mt-2 list-disc list-inside">
+          <% @task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="space-y-4">
+      <div class="field">
+        <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_field :title, class: "mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_area :description, class: "mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :priority, class: "block text-sm font-medium text-gray-700" %>
+        <%= form.number_field :priority, class: "mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :due_date, class: "block text-sm font-medium text-gray-700" %>
+        <%= form.date_field :due_date, class: "mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+      </div>
+
+      <div class="field flex items-center">
+        <%= form.label :completed, class: "block text-sm font-medium text-gray-700 mr-2" %>
+        <%= form.check_box :completed, class: "h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" %>
+      </div>
+    </div>
+
+    <div class="actions mt-6 flex justify-end">
+      <%= form.submit 'Update Task', class: "inline-block px-6 py-2 text-white bg-green-500 hover:bg-green-600 rounded-lg font-semibold" %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="mt-6 flex justify-between">
+    <%= link_to 'Back to Tasks', tasks_path, class: 'text-blue-500 hover:text-blue-700 font-medium' %>
+    <%= link_to 'Show Task', @task, class: 'text-blue-500 hover:text-blue-700 font-medium' %>
   </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :priority %>
-    <%= form.number_field :priority %>
-  </div>
-
-  <div class="field">
-    <%= form.label :due_date %>
-    <%= form.date_field :due_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :completed %>
-    <%= form.check_box :completed %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit 'Update Task' %>
-  </div>
-<% end %>
-
-<%= link_to 'Back to Tasks', tasks_path %> |
-<%= link_to 'Show Task', @task %>
+</div>

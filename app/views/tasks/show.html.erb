@@ -1,28 +1,32 @@
-<h1>Task Details</h1>
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold mb-6 text-center">Task Details</h1>
 
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
+  <div class="mb-4">
+    <strong class="text-gray-700 text-lg">Title:</strong>
+    <p class="text-xl text-gray-900 mt-1"><%= @task.title %></p>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @task.description %>
-</p>
+  <div class="mb-4">
+    <strong class="text-gray-700 text-lg">Description:</strong>
+    <p class="text-lg text-gray-800 mt-1"><%= @task.description %></p>
+  </div>
 
-<p>
-  <strong>Priority:</strong>
-  <%= @task.priority %>
-</p>
+  <div class="mb-4">
+    <strong class="text-gray-700 text-lg">Priority:</strong>
+    <p class="text-lg text-gray-800 mt-1"><%= @task.priority %></p>
+  </div>
 
-<p>
-  <strong>Due Date:</strong>
-  <%= @task.due_date %>
-</p>
+  <div class="mb-4">
+    <strong class="text-gray-700 text-lg">Due Date:</strong>
+    <p class="text-lg text-gray-800 mt-1"><%= @task.due_date.strftime("%B %d, %Y") %></p>
+  </div>
 
-<p>
-  <strong>Completed:</strong>
-  <%= @task.completed ? 'Yes' : 'No' %>
-</p>
+  <div class="mb-6">
+    <strong class="text-gray-700 text-lg">Completed:</strong>
+    <p class="text-lg text-gray-800 mt-1"><%= @task.completed ? 'Yes' : 'No' %></p>
+  </div>
 
-<%= link_to 'Back to Index', tasks_path, class: 'btn btn-primary' %>
+  <div class="flex justify-center">
+    <%= link_to 'Back to Index', tasks_path, class: 'inline-block px-6 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold' %>
+  </div>
+</div>
