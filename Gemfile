@@ -58,6 +58,8 @@ gem 'whenever', require: false
 
 gem 'factory_bot_rails'
 
+gem 'faker'
+
 gem 'rubocop', require: false
 
 group :development, :test do
@@ -71,6 +73,8 @@ group :development, :test do
   gem 'pry-rails'
 
   gem 'pry-byebug'
+
+  gem 'rails-controller-testing'
 end
 
 group :development do
