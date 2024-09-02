@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :task do
-    title { "MyString" }
-    description { "MyText" }
-    priority { 1 }
-    due_date { "2024-08-31" }
-    completed { false }
-    user { nil }
+    title { Faker::Lorem.sentence(word_count: 3) }
+    description { Faker::Lorem.paragraph(sentence_count: 2) }
+    priority { rand(1..5) }
+    due_date { Faker::Date.between(from: Date.today, to: 1.year.from_now) }
+    completed { [true, false].sample }
+    user { create(:user) }
   end
 end
