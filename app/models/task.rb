@@ -3,4 +3,10 @@ class Task < ApplicationRecord
 
   validates :title, presence: true
   validates :title, exclusion: { in: [''] }
+
+  validates :due_date, presence: true
+
+  def complete!
+    update(completed: true)
+  end
 end
