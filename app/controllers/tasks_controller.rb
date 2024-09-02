@@ -25,7 +25,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params.merge(user: current_user))
 
     if @task.save
-      redirect_to @task, notice: 'Task was successfully created.'
+      redirect_to tasks_url, notice: 'Task was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/:id
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: "Task '#{@task.title}' was successfully updated."
+      redirect_to tasks_url, notice: "Task '#{@task.title}' was successfully updated."
     else
       render :edit
     end
